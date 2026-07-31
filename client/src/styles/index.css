@@ -1,0 +1,407 @@
+@import 'tailwindcss';
+
+/* ==========================================================================
+   ENTERPRISE DESIGN SYSTEM — TOKENS
+   --------------------------------------------------------------------------
+   Two token layers:
+
+   1. PRIMITIVES  (--color-neutral-500, --color-brand-600 …)
+      Raw palette values. Theme-independent. Rarely used directly in components.
+
+   2. SEMANTIC    (--color-surface, --color-fg-muted, --color-border …)
+      Role-based aliases resolved through `@theme inline`, so a single
+      `data-theme` attribute on <html> re-themes the whole application without
+      rebuilding CSS or duplicating utility classes.
+
+   Components MUST consume semantic tokens (`bg-surface`, `text-fg-muted`).
+   Reaching for a primitive in a component is a design-system violation.
+   ========================================================================== */
+
+@theme {
+  /* --- Primitive palette: neutral (cool, low-chroma — the workhorse) ------ */
+  --color-neutral-0: #ffffff;
+  --color-neutral-25: #fcfcfd;
+  --color-neutral-50: #f7f8fa;
+  --color-neutral-100: #f0f1f4;
+  --color-neutral-200: #e3e5ea;
+  --color-neutral-300: #d0d3da;
+  --color-neutral-400: #a1a6b1;
+  --color-neutral-500: #717784;
+  --color-neutral-600: #555b68;
+  --color-neutral-700: #3f444f;
+  --color-neutral-800: #2b2f38;
+  --color-neutral-900: #1b1e25;
+  --color-neutral-950: #101217;
+
+  /* --- Primitive palette: brand (restrained corporate blue) -------------- */
+  --color-brand-50: #eff4ff;
+  --color-brand-100: #dbe6fe;
+  --color-brand-200: #bfd3fe;
+  --color-brand-300: #93b4fd;
+  --color-brand-400: #608cfa;
+  --color-brand-500: #3b68f6;
+  --color-brand-600: #2456d8;
+  --color-brand-700: #1d43ae;
+  --color-brand-800: #1e3a8a;
+  --color-brand-900: #1e356e;
+  --color-brand-950: #172248;
+
+  /* --- Primitive palette: status ---------------------------------------- */
+  --color-success-50: #ecfaf1;
+  --color-success-100: #d1f2df;
+  --color-success-200: #a6e5c2;
+  --color-success-500: #22945c;
+  --color-success-600: #17794a;
+  --color-success-700: #12603b;
+  --color-success-900: #0b3a24;
+
+  --color-warning-50: #fff7e8;
+  --color-warning-100: #ffecc9;
+  --color-warning-200: #fcd992;
+  --color-warning-500: #cc7a00;
+  --color-warning-600: #a86300;
+  --color-warning-700: #854e00;
+  --color-warning-900: #4d2d00;
+
+  --color-danger-50: #fef2f1;
+  --color-danger-100: #fddedb;
+  --color-danger-200: #fabfba;
+  --color-danger-500: #d3453a;
+  --color-danger-600: #b42318;
+  --color-danger-700: #911c13;
+  --color-danger-900: #55110b;
+
+  /* --- Typography -------------------------------------------------------- */
+  --font-sans:
+    'Inter', 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue',
+    Arial, sans-serif;
+  --font-mono:
+    'Cascadia Mono', 'JetBrains Mono', 'SF Mono', Consolas, 'Liberation Mono', monospace;
+
+  /* Dense, information-first scale. Body copy sits at 14px — the enterprise
+     standard (SAP Fiori, Fluent, Atlassian) — not the 16px marketing default. */
+  --text-2xs: 0.6875rem; /* 11px — table meta, badges          */
+  --text-2xs--line-height: 1rem;
+  --text-xs: 0.75rem; /* 12px — labels, helper text        */
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.8125rem; /* 13px — dense table / control text */
+  --text-sm--line-height: 1.25rem;
+  --text-base: 0.875rem; /* 14px — body                       */
+  --text-base--line-height: 1.375rem;
+  --text-md: 0.9375rem; /* 15px — emphasized body            */
+  --text-md--line-height: 1.5rem;
+  --text-lg: 1rem; /* 16px — card / section titles      */
+  --text-lg--line-height: 1.5rem;
+  --text-xl: 1.125rem; /* 18px — page title (mobile)        */
+  --text-xl--line-height: 1.625rem;
+  --text-2xl: 1.375rem; /* 22px — page title                 */
+  --text-2xl--line-height: 1.875rem;
+  --text-3xl: 1.75rem; /* 28px — display / metrics          */
+  --text-3xl--line-height: 2.125rem;
+
+  /* --- Elevation: tight, neutral, low-opacity. No coloured glows. -------- */
+  --shadow-xs: 0 1px 2px 0 rgb(16 18 23 / 0.05);
+  --shadow-sm: 0 1px 2px 0 rgb(16 18 23 / 0.06), 0 1px 3px 0 rgb(16 18 23 / 0.06);
+  --shadow-md: 0 2px 4px -1px rgb(16 18 23 / 0.06), 0 4px 8px -2px rgb(16 18 23 / 0.08);
+  --shadow-lg: 0 4px 6px -2px rgb(16 18 23 / 0.05), 0 12px 20px -4px rgb(16 18 23 / 0.1);
+  --shadow-xl: 0 8px 12px -4px rgb(16 18 23 / 0.06), 0 24px 40px -8px rgb(16 18 23 / 0.14);
+
+  /* --- Radii: small and consistent. Enterprise UI is not pill-shaped. ---- */
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+
+  /* --- Application shell metrics (referenced by layout components) ------- */
+  --spacing-sidebar: 15rem; /* 240px expanded  */
+  --spacing-sidebar-collapsed: 3.5rem; /* 56px  collapsed */
+  --spacing-topbar: 3rem; /* 48px            */
+
+  /* --- Motion: short, purposeful, easily disabled ------------------------ */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --animate-fade-in: fade-in 0.15s var(--ease-standard);
+}
+
+/* ==========================================================================
+   SEMANTIC TOKENS
+   `@theme inline` emits utilities that point at the var() below rather than
+   copying its value, which is what makes runtime theme switching work.
+   ========================================================================== */
+
+@theme inline {
+  --color-canvas: var(--app-canvas);
+  --color-surface: var(--app-surface);
+  --color-surface-raised: var(--app-surface-raised);
+  --color-surface-sunken: var(--app-surface-sunken);
+  --color-surface-hover: var(--app-surface-hover);
+  --color-surface-active: var(--app-surface-active);
+  --color-surface-selected: var(--app-surface-selected);
+  --color-surface-disabled: var(--app-surface-disabled);
+  --color-overlay: var(--app-overlay);
+
+  --color-fg: var(--app-fg);
+  --color-fg-muted: var(--app-fg-muted);
+  --color-fg-subtle: var(--app-fg-subtle);
+  --color-fg-disabled: var(--app-fg-disabled);
+  --color-fg-on-accent: var(--app-fg-on-accent);
+
+  --color-border: var(--app-border);
+  --color-border-strong: var(--app-border-strong);
+  --color-border-subtle: var(--app-border-subtle);
+
+  --color-accent: var(--app-accent);
+  --color-accent-hover: var(--app-accent-hover);
+  --color-accent-active: var(--app-accent-active);
+  --color-accent-subtle: var(--app-accent-subtle);
+  --color-accent-fg: var(--app-accent-fg);
+
+  --color-positive: var(--app-positive);
+  --color-positive-subtle: var(--app-positive-subtle);
+  --color-positive-fg: var(--app-positive-fg);
+
+  --color-caution: var(--app-caution);
+  --color-caution-subtle: var(--app-caution-subtle);
+  --color-caution-fg: var(--app-caution-fg);
+
+  --color-critical: var(--app-critical);
+  --color-critical-hover: var(--app-critical-hover);
+  --color-critical-subtle: var(--app-critical-subtle);
+  --color-critical-fg: var(--app-critical-fg);
+
+  --color-focus-ring: var(--app-focus-ring);
+
+  /* Inverted surface — tooltips and other "on top of everything" chrome. */
+  --color-inverse: var(--app-inverse);
+  --color-inverse-fg: var(--app-inverse-fg);
+}
+
+/**
+ * Makes the `dark:` variant follow our `data-theme` attribute instead of the
+ * OS media query, so an explicit user preference always wins.
+ */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* --- Light theme (default) ------------------------------------------------ */
+:root,
+[data-theme='light'] {
+  --app-canvas: var(--color-neutral-50);
+  --app-surface: var(--color-neutral-0);
+  --app-surface-raised: var(--color-neutral-0);
+  --app-surface-sunken: var(--color-neutral-100);
+  --app-surface-hover: var(--color-neutral-100);
+  --app-surface-active: var(--color-neutral-200);
+  --app-surface-selected: var(--color-brand-50);
+  --app-surface-disabled: var(--color-neutral-100);
+  --app-overlay: rgb(16 18 23 / 0.45);
+
+  --app-fg: var(--color-neutral-900);
+  --app-fg-muted: var(--color-neutral-600);
+  --app-fg-subtle: var(--color-neutral-500);
+  --app-fg-disabled: var(--color-neutral-400);
+  --app-fg-on-accent: var(--color-neutral-0);
+
+  --app-border: var(--color-neutral-200);
+  --app-border-strong: var(--color-neutral-300);
+  --app-border-subtle: var(--color-neutral-100);
+
+  --app-accent: var(--color-brand-600);
+  --app-accent-hover: var(--color-brand-700);
+  --app-accent-active: var(--color-brand-800);
+  --app-accent-subtle: var(--color-brand-50);
+  --app-accent-fg: var(--color-brand-700);
+
+  --app-positive: var(--color-success-600);
+  --app-positive-subtle: var(--color-success-50);
+  --app-positive-fg: var(--color-success-700);
+
+  --app-caution: var(--color-warning-600);
+  --app-caution-subtle: var(--color-warning-50);
+  --app-caution-fg: var(--color-warning-700);
+
+  --app-critical: var(--color-danger-600);
+  --app-critical-hover: var(--color-danger-700);
+  --app-critical-subtle: var(--color-danger-50);
+  --app-critical-fg: var(--color-danger-700);
+
+  --app-focus-ring: var(--color-brand-600);
+
+  --app-inverse: var(--color-neutral-900);
+  --app-inverse-fg: var(--color-neutral-0);
+
+  color-scheme: light;
+}
+
+/* --- Dark theme ----------------------------------------------------------- */
+[data-theme='dark'] {
+  --app-canvas: var(--color-neutral-950);
+  --app-surface: var(--color-neutral-900);
+  --app-surface-raised: var(--color-neutral-800);
+  --app-surface-sunken: #0a0c10;
+  --app-surface-hover: #262a33;
+  --app-surface-active: #313641;
+  --app-surface-selected: #1b2c4d;
+  --app-surface-disabled: #23262e;
+  --app-overlay: rgb(4 5 7 / 0.6);
+
+  --app-fg: #eceef2;
+  --app-fg-muted: #a7adba;
+  --app-fg-subtle: #838a97;
+  --app-fg-disabled: #5b616d;
+  --app-fg-on-accent: var(--color-neutral-0);
+
+  --app-border: #333844;
+  --app-border-strong: #464c59;
+  --app-border-subtle: #272b34;
+
+  --app-accent: var(--color-brand-500);
+  --app-accent-hover: var(--color-brand-400);
+  --app-accent-active: var(--color-brand-300);
+  --app-accent-subtle: #17243f;
+  --app-accent-fg: var(--color-brand-300);
+
+  --app-positive: var(--color-success-500);
+  --app-positive-subtle: #10291d;
+  --app-positive-fg: var(--color-success-200);
+
+  --app-caution: var(--color-warning-500);
+  --app-caution-subtle: #2e2008;
+  --app-caution-fg: var(--color-warning-200);
+
+  --app-critical: var(--color-danger-500);
+  --app-critical-hover: #e05b50;
+  --app-critical-subtle: #33130f;
+  --app-critical-fg: var(--color-danger-200);
+
+  --app-focus-ring: var(--color-brand-400);
+
+  --app-inverse: #464c59;
+  --app-inverse-fg: #f5f6f8;
+
+  color-scheme: dark;
+}
+
+/* ==========================================================================
+   BASE LAYER
+   ========================================================================== */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    border-color: var(--color-border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Prevents layout shift when a modal locks scrolling. */
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--text-base--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-variant-numeric: tabular-nums;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--color-fg);
+  }
+
+  /* One consistent, always-visible keyboard focus treatment. Never remove it:
+     enterprise software is operated by keyboard far more than consumer apps. */
+  :focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 1px;
+    border-radius: var(--radius-sm);
+  }
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  ::placeholder {
+    color: var(--color-fg-disabled);
+  }
+
+  /* Slim, neutral scrollbars — closer to a desktop application. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border-strong) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-border-strong);
+    border: 3px solid transparent;
+    border-radius: 9999px;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-fg-disabled);
+  }
+
+  /* Respect the OS-level accessibility preference. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+/* ==========================================================================
+   UTILITIES
+   ========================================================================== */
+
+@layer utilities {
+  /* Visible only to assistive technology. */
+  .sr-only-focusable:not(:focus):not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,13 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>client</title>
+    <meta name="color-scheme" content="light dark" />
+    <meta name="description" content="Enterprise administration console" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Enterprise Admin</title>
+    <script>
+      // Applies the persisted theme before first paint to avoid a flash of the
+      // wrong colour scheme. Kept inline and dependency-free on purpose.
+      (function () {
+        try {
+          var stored = localStorage.getItem('app.theme');
+          var theme = stored ? JSON.parse(stored) : 'system';
+          if (theme === 'system' || !theme) {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          /* localStorage unavailable — fall back to the light default. */
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <noscript>You need to enable JavaScript to run this application.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
