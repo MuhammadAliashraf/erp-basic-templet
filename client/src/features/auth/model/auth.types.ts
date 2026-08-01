@@ -12,8 +12,9 @@ export type Role = 'admin' | 'manager' | 'user' | (string & {});
 /**
  * Fine-grained capability, formatted `resource:action`.
  *
- * Two wildcards are recognised by `usePermissions`: `resource:*` grants every
- * action on a resource, and the bare `*` grants everything (superuser).
+ * These are the claims the session carries. They are the *baseline* for
+ * authorisation; the authority is the policy fetched by `features/rbac`, which
+ * also defines how wildcards (`resource:*`, `*`) are matched.
  *
  * Authorisation checks should use permissions, not roles — roles change per
  * customer, permissions describe what the UI actually needs to gate.

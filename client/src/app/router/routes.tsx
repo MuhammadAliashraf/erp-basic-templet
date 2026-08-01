@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate, type RouteObject } from 'react-router';
 
 import { AppShell, AuthLayout } from '@/components/layout';
 import { ROUTES } from '@/config/routes';
+import { RouteGuard } from '@/features/rbac';
 
 import { ProtectedRoute, PublicOnlyRoute } from './guards';
 
@@ -14,10 +15,17 @@ import { ProtectedRoute, PublicOnlyRoute } from './guards';
  * navigation. `<Suspense>` boundaries live in the layouts, so a route change
  * shows the page loader inside the frame rather than blanking the whole app.
  *
+ * Two guards, two concerns: `<ProtectedRoute>` asks whether anyone is signed
+ * in, `<RouteGuard>` asks whether *this* principal may be here. The second
+ * needs no arguments — it looks the requirement up from the access policy,
+ * falling back to `config/access.ts` — so a route's classification can be
+ * changed server-side without touching this file.
+ *
  * Adding a screen:
  *   1. add its path to `config/routes.ts`;
  *   2. add a `lazy()` import and a route object here;
- *   3. add a nav entry in `config/navigation.ts` if it belongs in the sidebar.
+ *   3. declare its requirement in `config/access.ts` if it is restricted;
+ *   4. add a nav entry in `config/navigation.ts` if it belongs in the sidebar.
  */
 
 /* Public */
@@ -31,6 +39,11 @@ const DataTablePage = lazy(() => import('@/pages/design-system/data-table-page')
 const SettingsLayout = lazy(() => import('@/pages/settings/settings-layout'));
 const ProfilePage = lazy(() => import('@/pages/settings/profile-page'));
 const AppearancePage = lazy(() => import('@/pages/settings/appearance-page'));
+
+/* Access control */
+const RolesPage = lazy(() => import('@/pages/access/roles-page'));
+const RoleDetailPage = lazy(() => import('@/pages/access/role-detail-page'));
+const PermissionsPage = lazy(() => import('@/pages/access/permissions-page'));
 
 /* System */
 const ForbiddenPage = lazy(() => import('@/pages/system/forbidden-page'));
@@ -68,6 +81,22 @@ export const routes: RouteObject[] = [
 
               { path: ROUTES.designSystem, element: <DesignSystemPage /> },
               { path: ROUTES.designSystemDataTable, element: <DataTablePage /> },
+
+              {
+                // One guard for the whole branch: the requirement declared for
+                // `/access` covers every child path unless a child declares a
+                // narrower one of its own.
+                element: <RouteGuard />,
+                children: [
+                  {
+                    path: ROUTES.accessControl,
+                    element: <Navigate to={ROUTES.roles} replace />,
+                  },
+                  { path: ROUTES.roles, element: <RolesPage /> },
+                  { path: ROUTES.roleDetail, element: <RoleDetailPage /> },
+                  { path: ROUTES.permissions, element: <PermissionsPage /> },
+                ],
+              },
 
               {
                 path: ROUTES.settings,

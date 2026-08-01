@@ -1,17 +1,25 @@
 import type { IconType } from 'react-icons';
-import { LuComponent, LuLayoutDashboard, LuSettings, LuTable } from 'react-icons/lu';
+import { LuComponent, LuKeyRound, LuLayoutDashboard, LuSettings, LuShieldCheck, LuTable, LuUsers } from 'react-icons/lu';
 
-import type { Permission } from '@/features/auth';
+import type { AccessRequirementInput } from '@/lib/access';
 
 import { ROUTES } from './routes';
 
 export interface NavItem {
+  /**
+   * Stable identifier. Also the key the access policy uses to override this
+   * item's requirement, so a destination can be hidden per role from the
+   * backend without touching this file.
+   */
   id: string;
   label: string;
   to?: string;
   icon?: IconType;
-  /** Hidden unless the user holds at least one of these permissions. */
-  requiredPermissions?: Permission[];
+  /**
+   * Default requirement: a permission key, a list (any-of), or a full rule.
+   * Omit it for destinations every authenticated user may reach.
+   */
+  access?: AccessRequirementInput;
   /** Trailing count or status text. */
   badge?: string;
   /** Nested items render as a collapsible group. */
@@ -32,6 +40,11 @@ export interface NavSection {
  * A product adds its sections to this array and nothing else in the shell
  * changes: permission filtering, active state, the collapsed icon rail and the
  * mobile drawer all read from here.
+ *
+ * The tree describes *structure*. Whether a given user sees an item is decided
+ * at runtime by `useAuthorizedNavigation`, which consults the access policy
+ * first and the `access` declaration below only as a fallback — so no grant is
+ * ever compiled into the bundle.
  *
  * Ordering convention: daily-use destinations first, configuration last.
  */
@@ -63,6 +76,34 @@ export const NAVIGATION: NavSection[] = [
         label: 'Data table',
         to: ROUTES.designSystemDataTable,
         icon: LuTable,
+      },
+    ],
+  },
+  {
+    id: 'administration',
+    label: 'Administration',
+    items: [
+      {
+        id: 'access-control',
+        label: 'Access control',
+        icon: LuShieldCheck,
+        access: { anyOf: ['roles:read', 'permissions:read'] },
+        children: [
+          {
+            id: 'access-roles',
+            label: 'Roles',
+            to: ROUTES.roles,
+            icon: LuUsers,
+            access: 'roles:read',
+          },
+          {
+            id: 'access-permissions',
+            label: 'Permissions',
+            to: ROUTES.permissions,
+            icon: LuKeyRound,
+            access: 'permissions:read',
+          },
+        ],
       },
     ],
   },

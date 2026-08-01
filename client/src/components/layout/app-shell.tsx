@@ -2,6 +2,7 @@ import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router';
 
 import { useAppDispatch, useAppSelector } from '@/app/store';
+import { RolePreviewBanner } from '@/features/rbac';
 import {
   mobileSidebarSet,
   selectIsMobileSidebarOpen,
@@ -64,6 +65,9 @@ export function AppShell() {
 
       <div className="flex min-w-0 flex-1 flex-col">
         <Topbar onOpenMobileSidebar={() => dispatch(mobileSidebarSet(true))} />
+
+        {/* Renders nothing unless an administrator is previewing another role. */}
+        <RolePreviewBanner />
 
         {/* `id` is the target of the skip link in AppProviders. */}
         <main id="main-content" tabIndex={-1} className="min-h-0 flex-1 overflow-y-auto">

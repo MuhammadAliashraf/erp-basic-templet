@@ -23,6 +23,12 @@ export const ROUTES = {
   designSystem: '/design-system',
   designSystemDataTable: '/design-system/data-table',
 
+  /* Access control (RBAC administration) */
+  accessControl: '/access',
+  roles: '/access/roles',
+  roleDetail: '/access/roles/:id',
+  permissions: '/access/permissions',
+
   settings: '/settings',
   settingsProfile: '/settings/profile',
   settingsAppearance: '/settings/appearance',

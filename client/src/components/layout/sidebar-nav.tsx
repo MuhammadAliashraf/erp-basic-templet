@@ -3,9 +3,10 @@ import { LuChevronDown } from 'react-icons/lu';
 import { NavLink, useLocation } from 'react-router';
 
 import type { NavItem, NavSection } from '@/config/navigation';
-import { usePermissions } from '@/features/auth';
+import { useAuthorizedNavigation } from '@/features/rbac';
 import { cn } from '@/lib/utils';
 
+import { Skeleton } from '../ui/skeleton';
 import { NavTooltip } from './nav-tooltip';
 
 export interface SidebarNavProps {
@@ -147,24 +148,42 @@ function NavGroup({
   );
 }
 
+/** Placeholder rail shown while the access policy resolves. */
+function NavSkeleton({ isCollapsed }: { isCollapsed: boolean }) {
+  return (
+    <div className="flex flex-col gap-1 px-2 py-3" aria-hidden="true">
+      {Array.from({ length: 6 }).map((_, index) => (
+        <Skeleton
+          key={index}
+          className={cn('h-7 rounded-md', isCollapsed ? 'w-8 self-center' : 'w-full')}
+        />
+      ))}
+    </div>
+  );
+}
+
 /**
  * Sidebar navigation tree.
  *
  * Items the user cannot access are filtered out entirely rather than disabled:
  * showing a locked door to a feature someone will never have is noise, not
  * information.
+ *
+ * The filtering itself is `useAuthorizedNavigation`'s job — it consults the
+ * server-issued policy first — so this component stays presentational and the
+ * rule lives in exactly one place.
  */
 export function SidebarNav({ sections, isCollapsed = false, onNavigate }: SidebarNavProps) {
-  const { hasAnyPermission } = usePermissions();
+  const { sections: authorizedSections, isLoading } = useAuthorizedNavigation(sections);
 
-  const canAccess = (item: NavItem): boolean =>
-    !item.requiredPermissions?.length || hasAnyPermission(item.requiredPermissions);
+  // A skeleton rather than an empty rail: navigation appearing item by item
+  // reads as a broken menu, and an empty one reads as lost access.
+  if (isLoading) return <NavSkeleton isCollapsed={isCollapsed} />;
 
   return (
     <nav aria-label="Main" className="flex flex-col gap-4 px-2 py-3">
-      {sections.map((section) => {
-        const items = section.items.filter(canAccess);
-        if (items.length === 0) return null;
+      {authorizedSections.map((section) => {
+        const items = section.items;
 
         return (
           <div key={section.id}>
@@ -182,7 +201,7 @@ export function SidebarNav({ sections, isCollapsed = false, onNavigate }: Sideba
                 item.children?.length ? (
                   <NavGroup
                     key={item.id}
-                    item={{ ...item, children: item.children.filter(canAccess) }}
+                    item={item}
                     isCollapsed={isCollapsed}
                     onNavigate={onNavigate}
                   />

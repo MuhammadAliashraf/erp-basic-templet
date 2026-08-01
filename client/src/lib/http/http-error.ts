@@ -183,3 +183,34 @@ export function normalizeError(error: unknown): HttpError {
 export function isHttpError(error: unknown): error is HttpError {
   return error instanceof HttpError;
 }
+
+/**
+ * Recognises the *serialised* form of an `HttpError`.
+ *
+ * RTK Query stores errors in Redux, so by the time a component reads one it is
+ * a plain `ApiErrorPayload` object and no longer an instance — `isHttpError`
+ * correctly returns false for it. Anything reading an error out of the store
+ * needs this check instead.
+ */
+export function isApiErrorPayload(error: unknown): error is ApiErrorPayload {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    typeof (error as ApiErrorPayload).message === 'string' &&
+    typeof (error as ApiErrorPayload).code === 'string' &&
+    typeof (error as ApiErrorPayload).status === 'number'
+  );
+}
+
+/** The user-facing message for any caught or cached failure. */
+export function getErrorMessage(error: unknown, fallback = 'Something went wrong. Please try again.'): string {
+  if (isHttpError(error) || isApiErrorPayload(error)) return error.message;
+  if (error instanceof Error) return error.message;
+  return fallback;
+}
+
+/** The correlation id, when the backend supplied one. */
+export function getErrorTraceId(error: unknown): string | undefined {
+  if (isHttpError(error) || isApiErrorPayload(error)) return error.traceId;
+  return undefined;
+}

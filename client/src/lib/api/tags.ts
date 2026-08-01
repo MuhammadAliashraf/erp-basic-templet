@@ -8,6 +8,12 @@
 export const API_TAGS = {
   /** The authenticated principal and its permissions. */
   Session: 'Session',
+  /** The effective authorisation policy for the current session. */
+  AccessPolicy: 'AccessPolicy',
+  /** RBAC roles. */
+  Role: 'Role',
+  /** The permission catalogue. */
+  Permission: 'Permission',
   /** Infrastructure-level: an entity list, for demonstration and reuse. */
   Entity: 'Entity',
 } as const;

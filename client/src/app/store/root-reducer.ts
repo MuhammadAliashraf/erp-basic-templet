@@ -6,6 +6,7 @@ import { combineReducers } from '@reduxjs/toolkit';
 // (and others) from being initialised in time.
 import { authReducer } from '@/features/auth/model/auth.slice';
 import { notificationsReducer } from '@/features/notifications/model/notifications.slice';
+import { rbacReducer } from '@/features/rbac/model/rbac.slice';
 import { uiReducer } from '@/features/ui/model/ui.slice';
 import { apiSlice } from '@/lib/api';
 
@@ -19,6 +20,7 @@ import { apiSlice } from '@/lib/api';
 export const rootReducer = combineReducers({
   [apiSlice.reducerPath]: apiSlice.reducer,
   auth: authReducer,
+  rbac: rbacReducer,
   ui: uiReducer,
   notifications: notificationsReducer,
 });
