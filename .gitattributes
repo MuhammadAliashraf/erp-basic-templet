@@ -1,0 +1,23 @@
+# Normalise line endings so a clone on Windows, macOS or Linux produces an
+# identical working tree and nobody opens a pull request full of ^M churn.
+* text=auto eol=lf
+
+# Binary assets — never touched.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.pdf binary
+
+# Lockfiles are generated; collapse them in diffs and reviews.
+package-lock.json linguist-generated=true -diff
+pnpm-lock.yaml    linguist-generated=true -diff
+
+# Report the repository as TypeScript rather than CSS/HTML on GitHub.
+*.css linguist-detectable=false
