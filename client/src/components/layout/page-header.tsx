@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 import { cn } from '@/lib/utils';
 
-import { type BreadcrumbItem,Breadcrumbs } from '../ui/breadcrumbs';
+import { type BreadcrumbItem, Breadcrumbs } from '../ui/breadcrumbs';
 
 export interface PageHeaderProps {
   title: string;

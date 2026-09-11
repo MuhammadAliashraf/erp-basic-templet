@@ -26,9 +26,7 @@ export interface AuthorizedNavigation {
  * A group whose children have all been filtered away is dropped too — it would
  * expand to nothing, which reads as a broken menu rather than a hidden one.
  */
-export function useAuthorizedNavigation(
-  sections: readonly NavSection[],
-): AuthorizedNavigation {
+export function useAuthorizedNavigation(sections: readonly NavSection[]): AuthorizedNavigation {
   const { can, requirementFor, isReady } = usePermissionContext();
 
   const authorizedSections = useMemo(() => {

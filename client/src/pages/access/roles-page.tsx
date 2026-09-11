@@ -176,9 +176,7 @@ export default function RolesPage() {
         cell: (role) => (
           <div className="whitespace-nowrap">
             <p className="text-xs text-fg-muted">{formatDateTime(role.updatedAt)}</p>
-            {role.updatedBy ? (
-              <p className="text-2xs text-fg-subtle">by {role.updatedBy}</p>
-            ) : null}
+            {role.updatedBy ? <p className="text-2xs text-fg-subtle">by {role.updatedBy}</p> : null}
           </div>
         ),
       },

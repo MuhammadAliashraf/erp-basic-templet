@@ -1,4 +1,4 @@
-import { type ReactNode,useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import { LuPlus, LuSearch, LuTrash2 } from 'react-icons/lu';
 
 import { ConfirmDialog, EmptyState } from '@/components/feedback';
@@ -126,7 +126,9 @@ export default function DesignSystemPage() {
                 <p className="text-lg font-semibold">Section title · 16px</p>
                 <p className="text-base">Body · 14px — the default for all reading text.</p>
                 <p className="text-sm text-fg-muted">Dense · 13px — table cells and controls.</p>
-                <p className="text-xs text-fg-muted">Label · 12px — field labels and helper text.</p>
+                <p className="text-xs text-fg-muted">
+                  Label · 12px — field labels and helper text.
+                </p>
                 <p className="text-2xs text-fg-subtle">Meta · 11px — badges and timestamps.</p>
               </div>
             </Section>
@@ -258,7 +260,9 @@ export default function DesignSystemPage() {
                 Confirm dialog
               </Button>
               <Separator orientation="vertical" className="h-8" />
-              <Button onClick={() => toast.success({ title: 'Changes saved' })}>Success toast</Button>
+              <Button onClick={() => toast.success({ title: 'Changes saved' })}>
+                Success toast
+              </Button>
               <Button
                 onClick={() =>
                   toast.error({

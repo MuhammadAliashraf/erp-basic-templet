@@ -27,7 +27,10 @@ export function PublicOnlyRoute() {
       redirectTo != null && redirectTo.startsWith('/') && !redirectTo.startsWith('//');
 
     return (
-      <Navigate to={isSafeRedirect ? redirectTo : appConfig.auth.defaultAuthenticatedPath} replace />
+      <Navigate
+        to={isSafeRedirect ? redirectTo : appConfig.auth.defaultAuthenticatedPath}
+        replace
+      />
     );
   }
 

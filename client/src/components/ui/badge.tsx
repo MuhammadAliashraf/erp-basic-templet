@@ -78,7 +78,10 @@ export function Badge({
       {withDot ? (
         <span
           aria-hidden="true"
-          className={cn('size-1.5 shrink-0 rounded-full', variant === 'solid' ? 'bg-current' : DOT_STYLES[intent])}
+          className={cn(
+            'size-1.5 shrink-0 rounded-full',
+            variant === 'solid' ? 'bg-current' : DOT_STYLES[intent],
+          )}
         />
       ) : null}
       {icon}

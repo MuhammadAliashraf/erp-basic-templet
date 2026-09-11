@@ -11,7 +11,10 @@ export function objectEntries<T extends object>(value: T): [keyof T, T[keyof T]]
 }
 
 /** Returns a copy containing only the listed keys. */
-export function pick<T extends object, K extends keyof T>(value: T, keys: readonly K[]): Pick<T, K> {
+export function pick<T extends object, K extends keyof T>(
+  value: T,
+  keys: readonly K[],
+): Pick<T, K> {
   const result = {} as Pick<T, K>;
   for (const key of keys) {
     if (key in value) result[key] = value[key];
@@ -20,7 +23,10 @@ export function pick<T extends object, K extends keyof T>(value: T, keys: readon
 }
 
 /** Returns a copy without the listed keys. */
-export function omit<T extends object, K extends keyof T>(value: T, keys: readonly K[]): Omit<T, K> {
+export function omit<T extends object, K extends keyof T>(
+  value: T,
+  keys: readonly K[],
+): Omit<T, K> {
   const result = { ...value };
   for (const key of keys) delete result[key];
   return result;
@@ -56,7 +62,10 @@ export function groupBy<T, K extends PropertyKey>(
 }
 
 /** Removes duplicates, optionally by a derived identity. */
-export function uniqueBy<T>(items: readonly T[], getKey: (item: T) => unknown = (item) => item): T[] {
+export function uniqueBy<T>(
+  items: readonly T[],
+  getKey: (item: T) => unknown = (item) => item,
+): T[] {
   const seen = new Set<unknown>();
   return items.filter((item) => {
     const key = getKey(item);

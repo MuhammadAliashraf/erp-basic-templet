@@ -27,7 +27,9 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(function Switch(
   ref,
 ) {
   return (
-    <span className={cn('relative inline-flex shrink-0 items-center', TRACK_STYLES[size], className)}>
+    <span
+      className={cn('relative inline-flex shrink-0 items-center', TRACK_STYLES[size], className)}
+    >
       <input
         ref={ref}
         type="checkbox"

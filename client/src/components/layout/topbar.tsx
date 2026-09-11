@@ -60,7 +60,11 @@ export function Topbar({ onOpenMobileSidebar, className }: TopbarProps) {
         </Tooltip>
 
         <Tooltip content="Help and documentation">
-          <IconButton aria-label="Help and documentation" icon={<LuCircleHelp />} className="hidden sm:inline-grid" />
+          <IconButton
+            aria-label="Help and documentation"
+            icon={<LuCircleHelp />}
+            className="hidden sm:inline-grid"
+          />
         </Tooltip>
 
         <ThemeToggle />

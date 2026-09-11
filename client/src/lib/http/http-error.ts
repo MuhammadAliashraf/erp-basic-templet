@@ -101,7 +101,9 @@ interface ServerErrorBody {
 }
 
 /** Accepts the several field-error conventions seen in the wild. */
-function extractFieldErrors(body: ServerErrorBody | undefined): Record<string, string[]> | undefined {
+function extractFieldErrors(
+  body: ServerErrorBody | undefined,
+): Record<string, string[]> | undefined {
   if (!body?.errors) return undefined;
 
   if (Array.isArray(body.errors)) {
@@ -111,10 +113,13 @@ function extractFieldErrors(body: ServerErrorBody | undefined): Record<string, s
     }, {});
   }
 
-  return Object.entries(body.errors).reduce<Record<string, string[]>>((accumulator, [key, value]) => {
-    accumulator[key] = Array.isArray(value) ? value : [value];
-    return accumulator;
-  }, {});
+  return Object.entries(body.errors).reduce<Record<string, string[]>>(
+    (accumulator, [key, value]) => {
+      accumulator[key] = Array.isArray(value) ? value : [value];
+      return accumulator;
+    },
+    {},
+  );
 }
 
 function extractMessage(body: ServerErrorBody | undefined, status: number): string {
@@ -203,7 +208,10 @@ export function isApiErrorPayload(error: unknown): error is ApiErrorPayload {
 }
 
 /** The user-facing message for any caught or cached failure. */
-export function getErrorMessage(error: unknown, fallback = 'Something went wrong. Please try again.'): string {
+export function getErrorMessage(
+  error: unknown,
+  fallback = 'Something went wrong. Please try again.',
+): string {
   if (isHttpError(error) || isApiErrorPayload(error)) return error.message;
   if (error instanceof Error) return error.message;
   return fallback;

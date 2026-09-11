@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '@/app/store';
 import { cn } from '@/lib/utils';
 import type { Intent } from '@/types/common';
 
-import { selectToasts, type Toast,toastDismissed } from '../model/notifications.slice';
+import { selectToasts, type Toast, toastDismissed } from '../model/notifications.slice';
 
 const ICONS: Record<Intent, React.ReactNode> = {
   neutral: <LuInfo />,
@@ -44,7 +44,10 @@ function ToastCard({ toast }: { toast: Toast }) {
       transition={{ duration: 0.16, ease: [0.2, 0, 0, 1] }}
       className="pointer-events-auto flex w-full gap-3 rounded-md border border-border bg-surface-raised p-3 shadow-lg"
     >
-      <span className={cn('mt-0.5 shrink-0 [&_svg]:size-4', ICON_STYLES[toast.intent])} aria-hidden="true">
+      <span
+        className={cn('mt-0.5 shrink-0 [&_svg]:size-4', ICON_STYLES[toast.intent])}
+        aria-hidden="true"
+      >
         {ICONS[toast.intent]}
       </span>
 
@@ -68,7 +71,7 @@ function ToastCard({ toast }: { toast: Toast }) {
         type="button"
         onClick={() => dispatch(toastDismissed(toast.id))}
         aria-label="Dismiss notification"
-        className="-mr-1 -mt-1 grid size-6 shrink-0 place-items-center rounded-sm text-fg-subtle transition-colors hover:bg-surface-hover hover:text-fg"
+        className="-mt-1 -mr-1 grid size-6 shrink-0 place-items-center rounded-sm text-fg-subtle transition-colors hover:bg-surface-hover hover:text-fg"
       >
         <LuX className="size-3.5" />
       </button>

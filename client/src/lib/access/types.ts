@@ -45,10 +45,7 @@ export interface AccessRequirement {
  * Ergonomic shorthand accepted everywhere a requirement is expected:
  * `'roles:read'`, `['roles:read', 'roles:update']` (any-of), or the full object.
  */
-export type AccessRequirementInput =
-  | PermissionKey
-  | readonly PermissionKey[]
-  | AccessRequirement;
+export type AccessRequirementInput = PermissionKey | readonly PermissionKey[] | AccessRequirement;
 
 /**
  * The evaluated principal: what the current session holds, indexed for O(1)

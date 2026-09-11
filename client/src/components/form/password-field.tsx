@@ -6,8 +6,10 @@ import { LuEye, LuEyeOff } from 'react-icons/lu';
 import { Input, type InputProps } from '../ui/input';
 import { FormField } from './form-field';
 
-export interface PasswordFieldProps<TFieldValues extends FieldValues>
-  extends Omit<InputProps, 'name' | 'type' | 'suffix' | 'value' | 'onChange' | 'onBlur'> {
+export interface PasswordFieldProps<TFieldValues extends FieldValues> extends Omit<
+  InputProps,
+  'name' | 'type' | 'suffix' | 'value' | 'onChange' | 'onBlur'
+> {
   name: FieldPath<TFieldValues>;
   control: Control<TFieldValues>;
   label?: ReactNode;

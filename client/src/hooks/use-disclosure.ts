@@ -21,8 +21,5 @@ export function useDisclosure(initialState = false): UseDisclosureReturn {
   const close = useCallback(() => setOpen(false), []);
   const toggle = useCallback(() => setOpen((current) => !current), []);
 
-  return useMemo(
-    () => ({ isOpen, open, close, toggle, setOpen }),
-    [isOpen, open, close, toggle],
-  );
+  return useMemo(() => ({ isOpen, open, close, toggle, setOpen }), [isOpen, open, close, toggle]);
 }

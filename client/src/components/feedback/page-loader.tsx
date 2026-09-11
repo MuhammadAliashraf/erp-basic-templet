@@ -15,7 +15,11 @@ export interface PageLoaderProps {
  * Intentionally minimal: a heavy skeleton here would flash for the ~50ms a
  * chunk usually takes to arrive, which is worse than a quiet spinner.
  */
-export function PageLoader({ label = 'Loading', isFullScreen = false, className }: PageLoaderProps) {
+export function PageLoader({
+  label = 'Loading',
+  isFullScreen = false,
+  className,
+}: PageLoaderProps) {
   return (
     <div
       className={cn(

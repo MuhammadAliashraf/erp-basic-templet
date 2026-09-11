@@ -24,9 +24,8 @@ export function RolePreviewBanner() {
       <LuEye aria-hidden="true" className="size-4 shrink-0 text-caution" />
 
       <p className="min-w-0 flex-1 text-xs text-fg">
-        Previewing the interface as{' '}
-        <span className="font-semibold">{previewRoleKey}</span>. Menus and actions reflect that
-        role — your own access is unchanged.
+        Previewing the interface as <span className="font-semibold">{previewRoleKey}</span>. Menus
+        and actions reflect that role — your own access is unchanged.
       </p>
 
       <Button size="sm" leadingIcon={<LuX />} onClick={endPreview}>

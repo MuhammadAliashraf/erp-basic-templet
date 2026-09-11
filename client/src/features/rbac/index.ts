@@ -53,5 +53,5 @@ export {
   selectIsPreviewingRole,
   selectPreviewRoleKey,
 } from './model/rbac.slice';
-export { PERMISSION_SCOPES } from './model/rbac.types';
 export type * from './model/rbac.types';
+export { PERMISSION_SCOPES } from './model/rbac.types';

@@ -69,7 +69,9 @@ export function withMatchingFields<T extends z.ZodObject<z.ZodRawShape>>(
   message = 'The values do not match.',
 ) {
   return schema.refine(
-    (value) => (value as Record<string, unknown>)[field] === (value as Record<string, unknown>)[confirmField],
+    (value) =>
+      (value as Record<string, unknown>)[field] ===
+      (value as Record<string, unknown>)[confirmField],
     { message, path: [confirmField] },
   );
 }

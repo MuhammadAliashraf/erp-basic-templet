@@ -72,8 +72,7 @@ export function Can({
 
   // An explicit `permission` wins; the individual props are the verbose form.
   const requirement: AccessRequirementInput | undefined =
-    permission ??
-    (anyOf || allOf || noneOf || roles ? { anyOf, allOf, noneOf, roles } : undefined);
+    permission ?? (anyOf || allOf || noneOf || roles ? { anyOf, allOf, noneOf, roles } : undefined);
 
   const isAllowed = can(requirement);
 

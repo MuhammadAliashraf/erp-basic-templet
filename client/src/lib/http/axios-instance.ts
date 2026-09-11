@@ -1,8 +1,4 @@
-import axios, {
-  type AxiosError,
-  type AxiosInstance,
-  type InternalAxiosRequestConfig,
-} from 'axios';
+import axios, { type AxiosError, type AxiosInstance, type InternalAxiosRequestConfig } from 'axios';
 
 import { appConfig } from '@/config/app.config';
 import { env } from '@/config/env';
@@ -136,14 +132,23 @@ export const http = {
   get: <T>(url: string, config?: Parameters<AxiosInstance['get']>[1]) =>
     httpClient.get<T>(url, config).then((response) => response.data),
 
-  post: <T, TBody = unknown>(url: string, body?: TBody, config?: Parameters<AxiosInstance['post']>[2]) =>
-    httpClient.post<T>(url, body, config).then((response) => response.data),
+  post: <T, TBody = unknown>(
+    url: string,
+    body?: TBody,
+    config?: Parameters<AxiosInstance['post']>[2],
+  ) => httpClient.post<T>(url, body, config).then((response) => response.data),
 
-  put: <T, TBody = unknown>(url: string, body?: TBody, config?: Parameters<AxiosInstance['put']>[2]) =>
-    httpClient.put<T>(url, body, config).then((response) => response.data),
+  put: <T, TBody = unknown>(
+    url: string,
+    body?: TBody,
+    config?: Parameters<AxiosInstance['put']>[2],
+  ) => httpClient.put<T>(url, body, config).then((response) => response.data),
 
-  patch: <T, TBody = unknown>(url: string, body?: TBody, config?: Parameters<AxiosInstance['patch']>[2]) =>
-    httpClient.patch<T>(url, body, config).then((response) => response.data),
+  patch: <T, TBody = unknown>(
+    url: string,
+    body?: TBody,
+    config?: Parameters<AxiosInstance['patch']>[2],
+  ) => httpClient.patch<T>(url, body, config).then((response) => response.data),
 
   delete: <T>(url: string, config?: Parameters<AxiosInstance['delete']>[1]) =>
     httpClient.delete<T>(url, config).then((response) => response.data),

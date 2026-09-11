@@ -1,4 +1,4 @@
-import { type ReactNode,useCallback, useRef } from 'react';
+import { type ReactNode, useCallback, useRef } from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -45,7 +45,8 @@ export function Tabs<TValue extends string = string>({
 
       let nextIndex: number | null = null;
       if (event.key === 'ArrowRight') nextIndex = (currentIndex + 1) % enabled.length;
-      if (event.key === 'ArrowLeft') nextIndex = (currentIndex - 1 + enabled.length) % enabled.length;
+      if (event.key === 'ArrowLeft')
+        nextIndex = (currentIndex - 1 + enabled.length) % enabled.length;
       if (event.key === 'Home') nextIndex = 0;
       if (event.key === 'End') nextIndex = enabled.length - 1;
 
@@ -65,10 +66,7 @@ export function Tabs<TValue extends string = string>({
       role="tablist"
       aria-label={ariaLabel}
       onKeyDown={handleKeyDown}
-      className={cn(
-        'scrollbar-none flex gap-1 overflow-x-auto border-b border-border',
-        className,
-      )}
+      className={cn('flex scrollbar-none gap-1 overflow-x-auto border-b border-border', className)}
     >
       {items.map((item) => {
         const isActive = item.value === value;
@@ -84,7 +82,7 @@ export function Tabs<TValue extends string = string>({
             tabIndex={isActive ? 0 : -1}
             onClick={() => onChange(item.value)}
             className={cn(
-              'relative inline-flex shrink-0 items-center gap-2 whitespace-nowrap px-3 py-2',
+              'relative inline-flex shrink-0 items-center gap-2 px-3 py-2 whitespace-nowrap',
               'text-sm font-medium transition-colors [&_svg]:size-4',
               'disabled:cursor-not-allowed disabled:text-fg-disabled',
               isActive

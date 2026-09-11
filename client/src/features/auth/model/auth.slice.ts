@@ -100,7 +100,8 @@ export const selectCurrentUser = (state: AuthRootState) => state.auth.user;
 export const selectAuthStatus = (state: AuthRootState) => state.auth.status;
 export const selectAuthError = (state: AuthRootState) => state.auth.error;
 export const selectIsAuthInitialized = (state: AuthRootState) => state.auth.isInitialized;
-export const selectIsAuthenticated = (state: AuthRootState) => state.auth.status === 'authenticated';
+export const selectIsAuthenticated = (state: AuthRootState) =>
+  state.auth.status === 'authenticated';
 
 /** Memoised so a new array identity never re-renders every consumer. */
 export const selectPermissions = createSelector(

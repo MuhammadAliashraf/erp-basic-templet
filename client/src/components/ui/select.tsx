@@ -36,7 +36,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
         disabled={disabled}
         aria-invalid={isInvalid || undefined}
         className={cn(
-          'w-full appearance-none rounded-md border bg-surface pl-2.5 pr-8 text-fg transition-colors',
+          'w-full appearance-none rounded-md border bg-surface pr-8 pl-2.5 text-fg transition-colors',
           'outline-none focus:outline focus:outline-2 focus:outline-offset-1 focus:outline-focus-ring',
           'disabled:cursor-not-allowed disabled:bg-surface-disabled disabled:opacity-70',
           SIZE_STYLES[size],
@@ -51,7 +51,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
         ) : null}
 
         {options.map((option) => (
-          <option key={String(option.value)} value={String(option.value)} disabled={option.disabled}>
+          <option
+            key={String(option.value)}
+            value={String(option.value)}
+            disabled={option.disabled}
+          >
             {option.label}
           </option>
         ))}
@@ -59,7 +63,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
 
       <LuChevronDown
         aria-hidden="true"
-        className="pointer-events-none absolute right-2.5 top-1/2 size-4 -translate-y-1/2 text-fg-subtle"
+        className="pointer-events-none absolute top-1/2 right-2.5 size-4 -translate-y-1/2 text-fg-subtle"
       />
     </div>
   );

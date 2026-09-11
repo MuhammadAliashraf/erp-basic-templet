@@ -18,4 +18,7 @@ export type AppStore = Omit<Store<RootState, UnknownAction>, 'dispatch'> & {
 };
 
 /** Signature of a thunk written against this store. */
-export type AppThunk<TReturn = void> = (dispatch: AppDispatch, getState: () => RootState) => TReturn;
+export type AppThunk<TReturn = void> = (
+  dispatch: AppDispatch,
+  getState: () => RootState,
+) => TReturn;

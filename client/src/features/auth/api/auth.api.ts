@@ -1,4 +1,4 @@
-import { API_TAGS,apiSlice } from '@/lib/api';
+import { API_TAGS, apiSlice } from '@/lib/api';
 
 import type { AuthUser, LoginRequest, LoginResponse } from '../model/auth.types';
 

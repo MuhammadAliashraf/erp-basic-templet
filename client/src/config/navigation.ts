@@ -1,5 +1,13 @@
 import type { IconType } from 'react-icons';
-import { LuComponent, LuKeyRound, LuLayoutDashboard, LuSettings, LuShieldCheck, LuTable, LuUsers } from 'react-icons/lu';
+import {
+  LuComponent,
+  LuKeyRound,
+  LuLayoutDashboard,
+  LuSettings,
+  LuShieldCheck,
+  LuTable,
+  LuUsers,
+} from 'react-icons/lu';
 
 import type { AccessRequirementInput } from '@/lib/access';
 

@@ -11,7 +11,9 @@ export const Radio = forwardRef<HTMLInputElement, RadioProps>(function Radio(
   ref,
 ) {
   return (
-    <span className={cn('relative inline-flex size-4 shrink-0 items-center justify-center', className)}>
+    <span
+      className={cn('relative inline-flex size-4 shrink-0 items-center justify-center', className)}
+    >
       <input
         ref={ref}
         type="radio"

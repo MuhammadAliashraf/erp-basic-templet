@@ -106,7 +106,11 @@ function NavGroup({
           <NavLink
             to={item.children?.[0]?.to ?? '#'}
             onClick={onNavigate}
-            className={cn(ITEM_BASE, 'justify-center px-0', hasActiveChild ? ITEM_ACTIVE : ITEM_IDLE)}
+            className={cn(
+              ITEM_BASE,
+              'justify-center px-0',
+              hasActiveChild ? ITEM_ACTIVE : ITEM_IDLE,
+            )}
           >
             {Icon ? <Icon aria-hidden="true" className="size-4 shrink-0" /> : null}
           </NavLink>

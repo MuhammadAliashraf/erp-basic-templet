@@ -36,7 +36,7 @@ export function UserMenu() {
             aria-haspopup="menu"
             aria-controls={isOpen ? menuId : undefined}
             className={cn(
-              'flex h-8 items-center gap-2 rounded-md pl-1 pr-1.5 transition-colors',
+              'flex h-8 items-center gap-2 rounded-md pr-1.5 pl-1 transition-colors',
               'hover:bg-surface-hover',
               isOpen && 'bg-surface-hover',
             )}
@@ -53,7 +53,9 @@ export function UserMenu() {
         <div className="border-b border-border px-3 py-2.5">
           <p className="truncate text-sm font-medium text-fg">{user.name}</p>
           <p className="truncate text-xs text-fg-muted">{user.email}</p>
-          {user.title ? <p className="mt-0.5 truncate text-2xs text-fg-subtle">{user.title}</p> : null}
+          {user.title ? (
+            <p className="mt-0.5 truncate text-2xs text-fg-subtle">{user.title}</p>
+          ) : null}
         </div>
 
         <div className="py-1">

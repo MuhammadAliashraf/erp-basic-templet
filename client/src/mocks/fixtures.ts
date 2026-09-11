@@ -19,23 +19,73 @@ export const MOCK_CREDENTIALS = {
 } as const;
 
 const FIRST_NAMES = [
-  'Amina', 'Bilal', 'Chen', 'Daniel', 'Elena', 'Farah', 'Gabriel', 'Hana',
-  'Ibrahim', 'Julia', 'Karim', 'Lena', 'Mateo', 'Nadia', 'Omar', 'Priya',
-  'Rafael', 'Sofia', 'Tariq', 'Uma', 'Viktor', 'Wei', 'Yusuf', 'Zara',
+  'Amina',
+  'Bilal',
+  'Chen',
+  'Daniel',
+  'Elena',
+  'Farah',
+  'Gabriel',
+  'Hana',
+  'Ibrahim',
+  'Julia',
+  'Karim',
+  'Lena',
+  'Mateo',
+  'Nadia',
+  'Omar',
+  'Priya',
+  'Rafael',
+  'Sofia',
+  'Tariq',
+  'Uma',
+  'Viktor',
+  'Wei',
+  'Yusuf',
+  'Zara',
 ];
 
 const LAST_NAMES = [
-  'Ahmed', 'Bergström', 'Chowdhury', 'Delacroix', 'Eriksson', 'Fernandez',
-  'Gupta', 'Haddad', 'Ivanov', 'Johansson', 'Khan', 'Lindqvist', 'Moreau',
-  'Nakamura', 'Okafor', 'Petrov', 'Quintero', 'Rossi', 'Silva', 'Tanaka',
+  'Ahmed',
+  'Bergström',
+  'Chowdhury',
+  'Delacroix',
+  'Eriksson',
+  'Fernandez',
+  'Gupta',
+  'Haddad',
+  'Ivanov',
+  'Johansson',
+  'Khan',
+  'Lindqvist',
+  'Moreau',
+  'Nakamura',
+  'Okafor',
+  'Petrov',
+  'Quintero',
+  'Rossi',
+  'Silva',
+  'Tanaka',
 ];
 
 const DEPARTMENTS = [
-  'Operations', 'Finance', 'Engineering', 'Compliance',
-  'Human Resources', 'Procurement', 'Customer Success',
+  'Operations',
+  'Finance',
+  'Engineering',
+  'Compliance',
+  'Human Resources',
+  'Procurement',
+  'Customer Success',
 ];
 
-const STATUSES: ExampleRecord['status'][] = ['active', 'active', 'active', 'pending', 'suspended', 'archived'];
+const STATUSES: ExampleRecord['status'][] = [
+  'active',
+  'active',
+  'active',
+  'pending',
+  'suspended',
+  'archived',
+];
 
 /**
  * Deterministic pseudo-random generator.

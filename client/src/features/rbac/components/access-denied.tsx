@@ -1,8 +1,8 @@
 import { LuLock } from 'react-icons/lu';
 
 import { EmptyState } from '@/components/feedback';
-import { cn } from '@/lib/utils';
 import type { PermissionKey } from '@/lib/access';
+import { cn } from '@/lib/utils';
 
 export interface AccessDeniedProps {
   title?: string;

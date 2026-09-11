@@ -1,4 +1,4 @@
-import { type ReactNode,Suspense } from 'react';
+import { type ReactNode, Suspense } from 'react';
 import { Outlet } from 'react-router';
 
 import { appConfig } from '@/config/app.config';

@@ -25,7 +25,9 @@ export function SystemMessage({
         <p className="mt-2 text-sm text-fg-muted">{description}</p>
 
         {actions ? (
-          <div className="mt-6 flex flex-col-reverse justify-center gap-2 sm:flex-row">{actions}</div>
+          <div className="mt-6 flex flex-col-reverse justify-center gap-2 sm:flex-row">
+            {actions}
+          </div>
         ) : null}
       </div>
     </div>

@@ -4,8 +4,7 @@ import { cn } from '@/lib/utils';
 
 // `size` and `prefix` both collide with legacy HTML attributes of the same
 // name, so they are replaced rather than extended.
-export interface InputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
+export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   size?: 'sm' | 'md' | 'lg';
   /** Applies the error treatment. Usually supplied by `<FormField>`. */
   isInvalid?: boolean;

@@ -106,8 +106,9 @@ export const rbacApi = apiSlice.injectEndpoints({
      */
     getPermissions: build.query<PermissionDefinition[], PermissionQueryParams | void>({
       query: (params) => ({ url: '/rbac/permissions', params: params ?? undefined }),
-      transformResponse: (response: PaginatedResponse<PermissionDefinition> | PermissionDefinition[]) =>
-        Array.isArray(response) ? response : response.data,
+      transformResponse: (
+        response: PaginatedResponse<PermissionDefinition> | PermissionDefinition[],
+      ) => (Array.isArray(response) ? response : response.data),
       providesTags: (result) => providesList(result, API_TAGS.Permission),
     }),
 

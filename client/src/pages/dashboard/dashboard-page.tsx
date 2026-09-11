@@ -27,7 +27,13 @@ interface Metric {
 
 const METRICS: Metric[] = [
   { id: 'requests', label: 'Open requests', value: 1284, delta: 4.2, isIncreasePositive: false },
-  { id: 'resolved', label: 'Resolved this week', value: 3921, delta: 12.8, isIncreasePositive: true },
+  {
+    id: 'resolved',
+    label: 'Resolved this week',
+    value: 3921,
+    delta: 12.8,
+    isIncreasePositive: true,
+  },
   { id: 'sla', label: 'Within SLA', value: 97, delta: 0.6, isIncreasePositive: true },
   { id: 'queue', label: 'Awaiting approval', value: 42, delta: -8.1, isIncreasePositive: false },
 ];
@@ -63,10 +69,34 @@ function MetricTile({ metric }: { metric: Metric }) {
 }
 
 const ACTIVITY = [
-  { id: '1', actor: 'System', action: 'Nightly reconciliation completed', time: '02:15', intent: 'positive' as const },
-  { id: '2', actor: 'A. Rahman', action: 'Approved request REQ-4821', time: '09:41', intent: 'neutral' as const },
-  { id: '3', actor: 'System', action: 'Integration timeout on connector 3', time: '11:07', intent: 'caution' as const },
-  { id: '4', actor: 'M. Chen', action: 'Updated access policy for Finance', time: '13:22', intent: 'neutral' as const },
+  {
+    id: '1',
+    actor: 'System',
+    action: 'Nightly reconciliation completed',
+    time: '02:15',
+    intent: 'positive' as const,
+  },
+  {
+    id: '2',
+    actor: 'A. Rahman',
+    action: 'Approved request REQ-4821',
+    time: '09:41',
+    intent: 'neutral' as const,
+  },
+  {
+    id: '3',
+    actor: 'System',
+    action: 'Integration timeout on connector 3',
+    time: '11:07',
+    intent: 'caution' as const,
+  },
+  {
+    id: '4',
+    actor: 'M. Chen',
+    action: 'Updated access policy for Finance',
+    time: '13:22',
+    intent: 'neutral' as const,
+  },
 ];
 
 export default function DashboardPage() {

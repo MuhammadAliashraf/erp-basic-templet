@@ -115,7 +115,11 @@ export function Pagination({
         <ol className="hidden items-center gap-1 sm:flex">
           {pages.map((entry, index) =>
             entry === 'ellipsis' ? (
-              <li key={`ellipsis-${index}`} className="px-1 text-xs text-fg-disabled" aria-hidden="true">
+              <li
+                key={`ellipsis-${index}`}
+                className="px-1 text-xs text-fg-disabled"
+                aria-hidden="true"
+              >
                 …
               </li>
             ) : (

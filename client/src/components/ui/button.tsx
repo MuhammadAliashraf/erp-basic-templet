@@ -66,7 +66,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
 
       {/* Content keeps its box while loading so the button never resizes. */}
       <span
-        className={cn('inline-flex items-center', BUTTON_GAP_STYLES[size], isLoading && 'invisible')}
+        className={cn(
+          'inline-flex items-center',
+          BUTTON_GAP_STYLES[size],
+          isLoading && 'invisible',
+        )}
       >
         {leadingIcon}
         {children}

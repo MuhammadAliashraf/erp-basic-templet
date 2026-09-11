@@ -15,7 +15,7 @@ import { ROUTES } from '@/config/routes';
 import { useFormErrorHandler } from '@/hooks';
 
 import { useAuth } from '../hooks/use-auth';
-import { type LoginFormValues,loginSchema } from '../model/auth.schemas';
+import { type LoginFormValues, loginSchema } from '../model/auth.schemas';
 
 /**
  * Sign-in form.

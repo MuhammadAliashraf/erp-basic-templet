@@ -30,9 +30,6 @@ export function providesList<TItem extends { id: string | number }>(
   tag: ApiTag,
 ) {
   return items
-    ? [
-        { type: tag, id: 'LIST' as const },
-        ...items.map((item) => ({ type: tag, id: item.id })),
-      ]
+    ? [{ type: tag, id: 'LIST' as const }, ...items.map((item) => ({ type: tag, id: item.id }))]
     : [{ type: tag, id: 'LIST' as const }];
 }

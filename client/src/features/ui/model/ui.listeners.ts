@@ -3,12 +3,7 @@ import { isAnyOf } from '@reduxjs/toolkit';
 import { startAppListening } from '@/app/store/listener-middleware';
 import { localStorageService, StorageKeys } from '@/lib/storage';
 
-import {
-  sidebarCollapsedSet,
-  sidebarToggled,
-  tableDensityChanged,
-  themeChanged,
-} from './ui.slice';
+import { sidebarCollapsedSet, sidebarToggled, tableDensityChanged, themeChanged } from './ui.slice';
 
 /**
  * Persists shell preferences.

@@ -1,4 +1,9 @@
-import type { AxiosAdapter, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import type {
+  AxiosAdapter,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
 import { AxiosHeaders } from 'axios';
 
 import { httpClient } from '@/lib/http';
@@ -36,7 +41,11 @@ const LATENCY_MS = 350;
 
 const ISSUED_TOKEN = 'mock-access-token';
 
-function error(status: number, code: string, message: string): { status: number; data: ApiErrorPayload } {
+function error(
+  status: number,
+  code: string,
+  message: string,
+): { status: number; data: ApiErrorPayload } {
   return { status, data: { code, message, status } };
 }
 
@@ -204,7 +213,9 @@ export function installMockApi(): void {
     }
 
     const body: Record<string, unknown> =
-      typeof config.data === 'string' ? JSON.parse(config.data) : ((config.data as Record<string, unknown>) ?? {});
+      typeof config.data === 'string'
+        ? JSON.parse(config.data)
+        : ((config.data as Record<string, unknown>) ?? {});
 
     const { status, data } = handler.handle({ body, params, config });
 

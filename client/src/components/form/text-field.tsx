@@ -4,8 +4,10 @@ import { type Control, Controller, type FieldPath, type FieldValues } from 'reac
 import { Input, type InputProps } from '../ui/input';
 import { FormField } from './form-field';
 
-export interface TextFieldProps<TFieldValues extends FieldValues>
-  extends Omit<InputProps, 'name' | 'defaultValue' | 'value' | 'onChange' | 'onBlur'> {
+export interface TextFieldProps<TFieldValues extends FieldValues> extends Omit<
+  InputProps,
+  'name' | 'defaultValue' | 'value' | 'onChange' | 'onBlur'
+> {
   name: FieldPath<TFieldValues>;
   control: Control<TFieldValues>;
   label?: ReactNode;

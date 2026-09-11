@@ -30,7 +30,10 @@ export const roleKeySchema = z
   .toLowerCase()
   .min(2, 'Role key is required.')
   .max(60, 'Role key is too long.')
-  .regex(/^[a-z][a-z0-9-]*$/, 'Use lowercase letters, numbers and hyphens, starting with a letter.');
+  .regex(
+    /^[a-z][a-z0-9-]*$/,
+    'Use lowercase letters, numbers and hyphens, starting with a letter.',
+  );
 
 export const roleFormSchema = z.object({
   key: roleKeySchema,

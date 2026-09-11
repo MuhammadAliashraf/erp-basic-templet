@@ -22,7 +22,7 @@ import { useDebouncedValue, useDocumentTitle, usePagination } from '@/hooks';
 import { formatDateTime } from '@/lib/utils';
 import type { SortState } from '@/types/common';
 
-import { type ExampleRecord,useGetExampleRecordsQuery } from './example-records.api';
+import { type ExampleRecord, useGetExampleRecordsQuery } from './example-records.api';
 
 /**
  * Reference implementation of the standard list screen.

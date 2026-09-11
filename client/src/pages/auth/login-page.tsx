@@ -17,9 +17,7 @@ export default function LoginPage() {
     <Card elevation="raised" className="p-5 sm:p-6">
       <div className="mb-5">
         <h2 className="text-md font-semibold text-fg">Sign in to your account</h2>
-        <p className="mt-1 text-xs text-fg-muted">
-          Use your organisation credentials to continue.
-        </p>
+        <p className="mt-1 text-xs text-fg-muted">Use your organisation credentials to continue.</p>
       </div>
 
       <LoginForm />
@@ -33,9 +31,9 @@ export default function LoginPage() {
           </p>
           <dl className="mt-1.5 grid grid-cols-[auto_1fr] gap-x-3 gap-y-0.5 font-mono text-xs text-fg-muted">
             <dt>Email</dt>
-            <dd className="select-all text-fg">admin@example.com</dd>
+            <dd className="text-fg select-all">admin@example.com</dd>
             <dt>Password</dt>
-            <dd className="select-all text-fg">password</dd>
+            <dd className="text-fg select-all">password</dd>
           </dl>
         </div>
       ) : null}

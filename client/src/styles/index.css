@@ -75,8 +75,7 @@
   --font-sans:
     'Inter', 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue',
     Arial, sans-serif;
-  --font-mono:
-    'Cascadia Mono', 'JetBrains Mono', 'SF Mono', Consolas, 'Liberation Mono', monospace;
+  --font-mono: 'Cascadia Mono', 'JetBrains Mono', 'SF Mono', Consolas, 'Liberation Mono', monospace;
 
   /* Dense, information-first scale. Body copy sits at 14px — the enterprise
      standard (SAP Fiori, Fluent, Atlassian) — not the 16px marketing default. */

@@ -19,7 +19,12 @@ import { cn } from '@/lib/utils';
  * commit to is worse than one they can simply see.
  */
 
-const THEME_OPTIONS: { value: ThemePreference; label: string; description: string; icon: React.ReactNode }[] = [
+const THEME_OPTIONS: {
+  value: ThemePreference;
+  label: string;
+  description: string;
+  icon: React.ReactNode;
+}[] = [
   { value: 'light', label: 'Light', description: 'Always use the light theme', icon: <LuSun /> },
   { value: 'dark', label: 'Dark', description: 'Always use the dark theme', icon: <LuMoon /> },
   {
@@ -89,7 +94,10 @@ export default function AppearancePage() {
   return (
     <div className="flex flex-col gap-4">
       <Card>
-        <CardHeader title="Theme" description="Applies immediately and is remembered on this device." />
+        <CardHeader
+          title="Theme"
+          description="Applies immediately and is remembered on this device."
+        />
         <CardBody className="grid gap-2 sm:grid-cols-3">
           {THEME_OPTIONS.map((option) => (
             <OptionCard

@@ -3,7 +3,10 @@ import { LuCheck, LuMinus } from 'react-icons/lu';
 
 import { cn } from '@/lib/utils';
 
-export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
+export interface CheckboxProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'type' | 'size'
+> {
   /** Partial selection — the "some rows selected" header state in tables. */
   indeterminate?: boolean;
   isInvalid?: boolean;
@@ -28,7 +31,9 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
   }, [indeterminate]);
 
   return (
-    <span className={cn('relative inline-flex size-4 shrink-0 items-center justify-center', className)}>
+    <span
+      className={cn('relative inline-flex size-4 shrink-0 items-center justify-center', className)}
+    >
       <input
         ref={(node) => {
           innerRef.current = node;

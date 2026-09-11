@@ -9,9 +9,9 @@ import { Badge, Card, Input, Select, Tabs } from '@/components/ui';
 import { ROUTES } from '@/config/routes';
 import { useToast } from '@/features/notifications';
 import {
+  PermissionButton,
   type PermissionDefinition,
   PermissionFormDialog,
-  PermissionButton,
   PermissionIconButton,
   type PermissionScope,
   useDeletePermissionMutation,

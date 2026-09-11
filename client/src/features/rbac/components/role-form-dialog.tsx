@@ -1,12 +1,6 @@
 import { useEffect } from 'react';
 
-import {
-  CheckboxField,
-  FormError,
-  TextareaField,
-  TextField,
-  useZodForm,
-} from '@/components/form';
+import { CheckboxField, FormError, TextareaField, TextField, useZodForm } from '@/components/form';
 import { Button, Modal } from '@/components/ui';
 import { useToast } from '@/features/notifications';
 import { useFormErrorHandler } from '@/hooks';

@@ -4,8 +4,10 @@ import { type Control, Controller, type FieldPath, type FieldValues } from 'reac
 import { Textarea, type TextareaProps } from '../ui/textarea';
 import { FormField } from './form-field';
 
-export interface TextareaFieldProps<TFieldValues extends FieldValues>
-  extends Omit<TextareaProps, 'name' | 'value' | 'onChange' | 'onBlur'> {
+export interface TextareaFieldProps<TFieldValues extends FieldValues> extends Omit<
+  TextareaProps,
+  'name' | 'value' | 'onChange' | 'onBlur'
+> {
   name: FieldPath<TFieldValues>;
   control: Control<TFieldValues>;
   label?: ReactNode;

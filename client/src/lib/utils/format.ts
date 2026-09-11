@@ -10,7 +10,10 @@ const EMPTY = '—';
 
 const formatterCache = new Map<string, Intl.NumberFormat | Intl.DateTimeFormat>();
 
-function cached<T extends Intl.NumberFormat | Intl.DateTimeFormat>(key: string, create: () => T): T {
+function cached<T extends Intl.NumberFormat | Intl.DateTimeFormat>(
+  key: string,
+  create: () => T,
+): T {
   const existing = formatterCache.get(key);
   if (existing) return existing as T;
   const created = create();
@@ -65,7 +68,10 @@ export function formatBytes(value: number | null | undefined, fractionDigits = 1
   if (value === 0) return '0 B';
 
   const units = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
-  const exponent = Math.min(Math.floor(Math.log(Math.abs(value)) / Math.log(1024)), units.length - 1);
+  const exponent = Math.min(
+    Math.floor(Math.log(Math.abs(value)) / Math.log(1024)),
+    units.length - 1,
+  );
   const scaled = value / 1024 ** exponent;
 
   return `${scaled.toFixed(exponent === 0 ? 0 : fractionDigits)} ${units[exponent]}`;
@@ -80,7 +86,10 @@ function toDate(value: DateInput): Date | null {
 }
 
 /** `2026-08-01` → `Aug 1, 2026` */
-export function formatDate(value: DateInput, options: FormatOptions & Intl.DateTimeFormatOptions = {}): string {
+export function formatDate(
+  value: DateInput,
+  options: FormatOptions & Intl.DateTimeFormatOptions = {},
+): string {
   const { locale = 'en-US', fallback = EMPTY, ...dateOptions } = options;
   const date = toDate(value);
   if (!date) return fallback;

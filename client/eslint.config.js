@@ -71,7 +71,8 @@ export default tseslint.config(
             },
             {
               group: ['@/features/*/*'],
-              message: 'Import from the feature barrel (@/features/<name>) instead of its internals.',
+              message:
+                'Import from the feature barrel (@/features/<name>) instead of its internals.',
             },
           ],
         },

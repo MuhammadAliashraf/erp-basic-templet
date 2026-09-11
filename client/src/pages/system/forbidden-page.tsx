@@ -34,12 +34,8 @@ export default function ForbiddenPage() {
       description={
         <>
           You do not have permission to view
-          {state?.from ? (
-            <span className="font-medium text-fg"> {state.from}</span>
-          ) : (
-            ' this page'
-          )}
-          . If you believe this is a mistake, contact your administrator and quote the account
+          {state?.from ? <span className="font-medium text-fg"> {state.from}</span> : ' this page'}.
+          If you believe this is a mistake, contact your administrator and quote the account
           {/* Naming the account shortcuts the "which login were you using?" round trip. */}
           {user?.email ? <span className="font-medium text-fg"> {user.email}</span> : null}.
           {requiredPermissions.length > 0 ? (

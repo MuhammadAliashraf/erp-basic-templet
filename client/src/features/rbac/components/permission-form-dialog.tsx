@@ -9,7 +9,7 @@ import type { SelectOption } from '@/types/common';
 
 import { useCreatePermissionMutation, useUpdatePermissionMutation } from '../api/rbac.api';
 import { permissionFormSchema, type PermissionFormValues } from '../model/rbac.schemas';
-import { type PermissionDefinition, PERMISSION_SCOPES } from '../model/rbac.types';
+import { PERMISSION_SCOPES, type PermissionDefinition } from '../model/rbac.types';
 
 export interface PermissionFormDialogProps {
   isOpen: boolean;

@@ -28,7 +28,7 @@ export default function SettingsLayout() {
       <PageContainer width="default">
         <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
           <nav aria-label="Settings sections" className="shrink-0 lg:w-56">
-            <ul className="scrollbar-none flex gap-1 overflow-x-auto border-b border-border lg:flex-col lg:border-b-0">
+            <ul className="flex scrollbar-none gap-1 overflow-x-auto border-b border-border lg:flex-col lg:border-b-0">
               {SETTINGS_NAV.map((item) => (
                 <li key={item.to} className="shrink-0 lg:w-full">
                   <NavLink

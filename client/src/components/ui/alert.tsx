@@ -63,7 +63,10 @@ export function Alert({
       className={cn('flex gap-3 rounded-md border p-3', CONTAINER_STYLES[intent], className)}
       {...props}
     >
-      <span className={cn('mt-0.5 shrink-0 [&_svg]:size-4', ICON_STYLES[intent])} aria-hidden="true">
+      <span
+        className={cn('mt-0.5 shrink-0 [&_svg]:size-4', ICON_STYLES[intent])}
+        aria-hidden="true"
+      >
         {icon ?? DEFAULT_ICONS[intent]}
       </span>
 
@@ -80,7 +83,7 @@ export function Alert({
           type="button"
           onClick={onDismiss}
           aria-label="Dismiss"
-          className="-mr-1 -mt-1 grid size-6 shrink-0 place-items-center rounded-sm text-fg-subtle transition-colors hover:bg-surface-hover hover:text-fg"
+          className="-mt-1 -mr-1 grid size-6 shrink-0 place-items-center rounded-sm text-fg-subtle transition-colors hover:bg-surface-hover hover:text-fg"
         >
           <LuX className="size-3.5" />
         </button>

@@ -18,7 +18,8 @@ const VARIANT_STYLES: Record<NonNullable<IconButtonProps['variant']>, string> = 
   primary: 'bg-accent text-fg-on-accent hover:bg-accent-hover active:bg-accent-active',
   secondary:
     'bg-surface text-fg border border-border-strong hover:bg-surface-hover active:bg-surface-active shadow-xs',
-  ghost: 'bg-transparent text-fg-muted hover:bg-surface-hover hover:text-fg active:bg-surface-active',
+  ghost:
+    'bg-transparent text-fg-muted hover:bg-surface-hover hover:text-fg active:bg-surface-active',
   danger: 'bg-critical text-fg-on-accent hover:bg-critical-hover',
 };
 
@@ -33,7 +34,16 @@ const SIZE_STYLES: Record<NonNullable<IconButtonProps['size']>, string> = {
  * top bar, where a text label would cost more space than it earns.
  */
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(function IconButton(
-  { icon, variant = 'ghost', size = 'md', isLoading = false, className, disabled, type = 'button', ...props },
+  {
+    icon,
+    variant = 'ghost',
+    size = 'md',
+    isLoading = false,
+    className,
+    disabled,
+    type = 'button',
+    ...props
+  },
   ref,
 ) {
   return (

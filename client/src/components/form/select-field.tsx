@@ -4,8 +4,10 @@ import { type Control, Controller, type FieldPath, type FieldValues } from 'reac
 import { Select, type SelectProps } from '../ui/select';
 import { FormField } from './form-field';
 
-export interface SelectFieldProps<TFieldValues extends FieldValues>
-  extends Omit<SelectProps, 'name' | 'value' | 'onChange' | 'onBlur'> {
+export interface SelectFieldProps<TFieldValues extends FieldValues> extends Omit<
+  SelectProps,
+  'name' | 'value' | 'onChange' | 'onBlur'
+> {
   name: FieldPath<TFieldValues>;
   control: Control<TFieldValues>;
   label?: ReactNode;
