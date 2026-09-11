@@ -1,9 +1,4 @@
-import type {
-  AccessPolicy,
-  PermissionDefinition,
-  PermissionScope,
-  Role,
-} from '@/features/rbac';
+import type { AccessPolicy, PermissionDefinition, PermissionScope, Role } from '@/features/rbac';
 
 /**
  * Seed data for the RBAC mock backend. Development only.
@@ -26,32 +21,114 @@ interface PermissionSeed {
 
 const PERMISSION_SEEDS: PermissionSeed[] = [
   /* Access control — the module that administers the rest. */
-  { key: 'roles:read', name: 'View roles', scope: 'page', group: 'Access control', isSystem: true, description: 'Open the roles screen and inspect assignments.' },
-  { key: 'roles:create', name: 'Create roles', scope: 'button', group: 'Access control', isSystem: true },
-  { key: 'roles:update', name: 'Edit roles', scope: 'button', group: 'Access control', isSystem: true },
-  { key: 'roles:delete', name: 'Delete roles', scope: 'button', group: 'Access control', isSystem: true },
-  { key: 'roles:assign', name: 'Assign permissions', scope: 'api', group: 'Access control', isSystem: true, description: 'Change which permissions a role grants.' },
-  { key: 'permissions:read', name: 'View permission catalogue', scope: 'page', group: 'Access control', isSystem: true },
-  { key: 'permissions:create', name: 'Create permissions', scope: 'button', group: 'Access control', isSystem: true },
-  { key: 'permissions:update', name: 'Edit permissions', scope: 'button', group: 'Access control', isSystem: true },
-  { key: 'permissions:delete', name: 'Delete permissions', scope: 'button', group: 'Access control', isSystem: true },
+  {
+    key: 'roles:read',
+    name: 'View roles',
+    scope: 'page',
+    group: 'Access control',
+    isSystem: true,
+    description: 'Open the roles screen and inspect assignments.',
+  },
+  {
+    key: 'roles:create',
+    name: 'Create roles',
+    scope: 'button',
+    group: 'Access control',
+    isSystem: true,
+  },
+  {
+    key: 'roles:update',
+    name: 'Edit roles',
+    scope: 'button',
+    group: 'Access control',
+    isSystem: true,
+  },
+  {
+    key: 'roles:delete',
+    name: 'Delete roles',
+    scope: 'button',
+    group: 'Access control',
+    isSystem: true,
+  },
+  {
+    key: 'roles:assign',
+    name: 'Assign permissions',
+    scope: 'api',
+    group: 'Access control',
+    isSystem: true,
+    description: 'Change which permissions a role grants.',
+  },
+  {
+    key: 'permissions:read',
+    name: 'View permission catalogue',
+    scope: 'page',
+    group: 'Access control',
+    isSystem: true,
+  },
+  {
+    key: 'permissions:create',
+    name: 'Create permissions',
+    scope: 'button',
+    group: 'Access control',
+    isSystem: true,
+  },
+  {
+    key: 'permissions:update',
+    name: 'Edit permissions',
+    scope: 'button',
+    group: 'Access control',
+    isSystem: true,
+  },
+  {
+    key: 'permissions:delete',
+    name: 'Delete permissions',
+    scope: 'button',
+    group: 'Access control',
+    isSystem: true,
+  },
 
   /* User management — the module the template expects a product to add next. */
   { key: 'users:read', name: 'View users', scope: 'page', group: 'User management' },
   { key: 'users:create', name: 'Invite users', scope: 'button', group: 'User management' },
   { key: 'users:update', name: 'Edit users', scope: 'button', group: 'User management' },
   { key: 'users:delete', name: 'Delete users', scope: 'button', group: 'User management' },
-  { key: 'users:activate', name: 'Activate and suspend users', scope: 'button', group: 'User management' },
-  { key: 'users:assign-roles', name: 'Assign roles to users', scope: 'component', group: 'User management' },
+  {
+    key: 'users:activate',
+    name: 'Activate and suspend users',
+    scope: 'button',
+    group: 'User management',
+  },
+  {
+    key: 'users:assign-roles',
+    name: 'Assign roles to users',
+    scope: 'component',
+    group: 'User management',
+  },
   { key: 'users:export', name: 'Export the user list', scope: 'api', group: 'User management' },
-  { key: 'users:field:email', name: 'See user email addresses', scope: 'field', group: 'User management' },
-  { key: 'users:field:phone', name: 'See user phone numbers', scope: 'field', group: 'User management' },
+  {
+    key: 'users:field:email',
+    name: 'See user email addresses',
+    scope: 'field',
+    group: 'User management',
+  },
+  {
+    key: 'users:field:phone',
+    name: 'See user phone numbers',
+    scope: 'field',
+    group: 'User management',
+  },
 
   /* Reference module, to show scopes other than page and button. */
   { key: 'reports:read', name: 'View reports', scope: 'menu', group: 'Reporting' },
   { key: 'reports:export', name: 'Export reports', scope: 'api', group: 'Reporting' },
   { key: 'reports:schedule', name: 'Schedule reports', scope: 'component', group: 'Reporting' },
-  { key: 'reports:field:cost', name: 'See cost figures', scope: 'field', group: 'Reporting', description: 'Unit costs and margin columns.' },
+  {
+    key: 'reports:field:cost',
+    name: 'See cost figures',
+    scope: 'field',
+    group: 'Reporting',
+    description: 'Unit costs and margin columns.',
+  },
 
   { key: 'audit:read', name: 'View the audit log', scope: 'page', group: 'Compliance' },
   { key: 'audit:export', name: 'Export the audit log', scope: 'api', group: 'Compliance' },
@@ -101,7 +178,7 @@ function defineRole(
  * explicit denial carved out of a wildcard grant.
  */
 export const MOCK_ROLES: Role[] = [
-  role(1, {
+  defineRole(1, {
     key: 'platform-owner',
     name: 'Platform owner',
     description: 'Unrestricted. Break-glass access for the platform team.',
@@ -113,7 +190,7 @@ export const MOCK_ROLES: Role[] = [
     userCount: 2,
   }),
 
-  role(2, {
+  defineRole(2, {
     key: 'administrator',
     name: 'Administrator',
     description: 'Runs access control and user management day to day.',
@@ -133,7 +210,7 @@ export const MOCK_ROLES: Role[] = [
     userCount: 6,
   }),
 
-  role(3, {
+  defineRole(3, {
     key: 'operations-manager',
     name: 'Operations manager',
     description: 'Manages people and reporting, but cannot change access rules.',
@@ -155,7 +232,7 @@ export const MOCK_ROLES: Role[] = [
     userCount: 14,
   }),
 
-  role(4, {
+  defineRole(4, {
     key: 'auditor',
     name: 'Auditor',
     description: 'Read-only across the platform, including the audit log.',
@@ -170,7 +247,7 @@ export const MOCK_ROLES: Role[] = [
     userCount: 3,
   }),
 
-  role(5, {
+  defineRole(5, {
     key: 'member',
     name: 'Member',
     description: 'The baseline every new account starts with.',

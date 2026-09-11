@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { LuArrowLeft, LuEye, LuPencil, LuRotateCcw, LuSave } from 'react-icons/lu';
 import { useParams } from 'react-router';
 
@@ -50,11 +50,16 @@ export default function RoleDetailPage() {
 
   useDocumentTitle(role ? `${role.name} · Roles` : 'Role');
 
-  // The draft mirrors the server value until the user edits it; resetting on a
-  // new id keeps a stale draft from leaking across roles.
-  useEffect(() => {
+  // The draft mirrors the server value until the user edits it; resetting when
+  // the id changes keeps a stale draft from leaking across roles. Adjusted
+  // during render rather than in an effect, which would commit the stale draft
+  // once before clearing it.
+  // https://react.dev/reference/react/useState#storing-information-from-previous-renders
+  const [draftRoleId, setDraftRoleId] = useState(id);
+  if (draftRoleId !== id) {
+    setDraftRoleId(id);
     setDraft(null);
-  }, [id]);
+  }
 
   const assigned = draft ?? role?.permissions ?? [];
 
